@@ -1,0 +1,126 @@
+*{
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+:root{
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) * .7);
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #12181b;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+.heading{
+    margin-top: 50px;
+    text-align: center;
+}
+.heading span{
+    font-size: 45px;
+}
+.board{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: repeat(3 , auto);
+    margin-bottom: 150px;
+}
+.cell{
+    background-color: #333333;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid greenyellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+}
+.cell.x,
+.cell.circle{
+    cursor: not-allowed;
+}
+.cell.x::before,
+.cell.x::after{
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+    background-color: #fa902d;
+    /* background-color: white; */
+}
+.cell.x::after{
+    transform: rotate(45deg);
+}
+.cell.x::before{
+    transform: rotate(-45deg);
+}
+
+.cell.circle::before,
+.cell.circle::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+.cell.circle::before{
+    width: var(--mark-size);
+    height: var(--mark-size);
+    background-color: #6680e6;
+    /* background-color: white; */
+}
+.cell.circle::after{
+    width: calc(var(--mark-size) * 0.8);
+    height: calc(var(--mark-size) * 0.8);
+    background-color: #333333;
+}
+.winning-message {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.8);
+}
+.winning-message .text {
+    font-size: 45px;
+    color: white;
+    background-color: #333333;
+    padding: 5px 50px 10px 50px;
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+    text-align: center;
+}
+.winning-message #restart {
+    font-size: 25px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    padding: 0.5em 0.55em;
+    margin-top: 0.8em;
+    text-transform: lowercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.winning-message #restart:hover {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
+.winning-message.show {
+    display: flex;
+}
+
